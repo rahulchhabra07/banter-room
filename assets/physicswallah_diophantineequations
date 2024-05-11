@@ -1,0 +1,19 @@
+Tension मत लो, मैं तुम्हें diophantine equations के बारे में समझाता हूँ.
+
+So, diophantine equations का मतलब है कि हमें ऐसे numbers pairs ढूंढने हैं जो एक equation को satisfy करते हैं। लेकिन इसमें एक twist है, सारे numbers integers या whole numbers होने चाहिए।
+
+चलो एक example लेते हैं: x squared + y squared = 25। अब यहाँ x और y के लिए ऐसे values ढूंढ़नी है जो की whole numbers हों।
+
+अब इन equations को solve करने के लिए, हम कुछ steps follow कर सकते हैं:
+
+सबसे पहले equation को ध्यान से पढ़ो और समझो कि क्या पूछ रहा है। x और y जैसे variables को identify करो।
+
+सोचो कि x और y के कितने values equation को संतुष्टि कर सकती है। याद रखो, हमें यहाँ whole numbers चाहिए।
+
+अलग-अलग values of x और y को try करो जो equation को satisfy कर सकते हैं। इस example में, तुम (3, 4), (-3, -4), (5, 0) जैसे pairs को try कर सकते हो। जब तक सही solution ना मिले, try करते रहो।
+
+जब तुम एक pair ऑफ़ numbers ढूंढ़ लेते हो जो equation को solve करता है, तब उसे equation में substitute करके चेक करो। अगर equation solve हो रही है, तो तुमने सही answer ढूंढ़ लिया है!
+
+एक solution से काम नहीं चलना चाहिए। diophantine equations में often multiple solutions होते हैं। तो और values और combinations try करो, और सारे possible solutions ढूंढ़ो।
+
+याद रखो, ये equation कभी-कभी मुश्किल हो सकते हैं, और कुछ cases में integer solutions ही नहीं मिलते। ऐसे situations में, हम दूसरे mathematical techniques का इस्तेमाल कर सकते हैं, लेकिन वो next topic है।

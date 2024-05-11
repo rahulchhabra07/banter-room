@@ -1,0 +1,10 @@
+openai
+openai-whisper
+setuptools-rust
+pyaudio
+python-dotenv
+elevenlabslib
+replicate
+opencv-python
+ffpyplayer
+groq

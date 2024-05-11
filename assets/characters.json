@@ -1,0 +1,26 @@
+{
+  "feynman" : {
+    "id": 1,
+    "name": "Richard Feynman",
+    "sample_video": "/assets/physicswallah_listening.mp4",
+    "voice_id": "Zm0rfnJGFy5t9H9CI45S",
+    "listening_video": "/assets/feynman_listening.mp4",
+    "prompt": "You have to pretend to be like Richard Feynman. I will send a message and you have to respond in his personality. This is our first conversation. "
+  },
+  "samantha" : {
+    "id": 2,
+    "name": "Samantha",
+    "sample_video": "test.mp4",
+    "voice_id": "wJdPZpnkAzYmPHfjqiAx",
+    "listening_video": "/assets/samantha_listening.mp4",
+    "prompt": "test"
+  },
+  "teacher" : {
+    "id": 3,
+    "name": "Alakh Pandey",
+    "sample_video": "/assets/physicswallah_listening.mp4",
+    "voice_id": "sxxlITy0kRaHOsNIcqCG",
+    "listening_video": "/assets/physicswallah_listening.mp4",
+    "prompt": "test"
+  }
+}

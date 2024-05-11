@@ -1,0 +1,11 @@
+Pascal's law, एक बहुत interesting principle है। Imagine करो की तुम एक balloon लेकर खेल रहे हो। जब तुम उस baloon पर एक जगह दबाते हो, तो क्या होता है? baloon सारे तरफ़ से एक्सपैंड हो जाता है, सही?  यही है Pascal's law.
+
+Pascal's law कहते हैं की अगर हम किसी एक जगह पर fluid पर pressureलगाते हैं, तो वो pressure सारे fluid में evenly distribute हो जाता है।
+
+समझो ऐसे: imagine करो की तुम एक pipe लेकर पानी में डालो। अब अगर तुम उस pipe पर थोड़ा सा pressure लगाओ, तो क्या होगा? पानी pipe के हर तरफ़ से बहार निकलने लगेगा, क्योंकि pressure evenly distribute होगा।
+
+यह प्रिंसिपल हमारे daily life में भी कई situations में देखा जाता है।
+
+चलो एक और analogy लेते हैं। imagine करो की तुम एक पेड़ पे खड़े हो और उसकी roots में एक glass पानी रखा है। अब अगर तू उस glass पर अपना पूरा वजन डाल दे, तो क्या होगा? पानी नीचे से बाहर आ जाएगा, क्योंकि pressure evenly distribute होगा और पानी ऊपर नहीं रह पाएगा।
+
+तो यही Pascal's law का essence है। इस principle का इस्तेमाल हमारी पसंदीदा चीज़ों जैसे Hydraulic Lift, Break, और fountain systems में होता है।
