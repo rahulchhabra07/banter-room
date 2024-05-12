@@ -9,6 +9,7 @@ from audio_recorder_streamlit import audio_recorder
 from octoai.util import to_file
 from octoai.client import OctoAI
 from response import generate_character_response
+from schemas import Message
 
 st.set_page_config(layout="wide")
 
@@ -111,7 +112,6 @@ with top_row:
                 FRAME_WINDOW2 = st.image(f"./assets/{user1.lower().replace(" ", "_")}.jpeg", width=640)
             else:
                 video_html = base64_to_html_video(st.session_state.user1_video_data)
-                print (video_html)
                 st.markdown(video_html, unsafe_allow_html=True)
                 print (st.session_state.user1_video_state)
                 st.session_state.user1_video_state = 'image'
@@ -121,7 +121,6 @@ with top_row:
         if user2 == '':
             FRAME_WINDOW2 = st.image("./assets/llama2.png", width=640)  # Default image
         else:
-            print ("yo yo")
             if st.session_state.user2_video_state == 'image':
                 if not os.path.exists(f"./assets/{user2.lower().replace(" ", "_")}.jpeg"):
                     create_image(user2.lower().replace(" ", "_"))
@@ -149,11 +148,10 @@ with footer_container:
             with open(webm_file_path, "wb") as f:
                 f.write(audio_bytes)
             # transcript = speech_to_text(webm_file_path)
-            transcript = "What is your name man?" ## remove this - currently hardcoded for testing
-            if transcript:
-                st.write(transcript)
+            message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
+            if message:
                 os.remove(webm_file_path)
-                response = generate_character_response(transcript)
+                response = generate_character_response(message)
                 print (response.name)
                 #ToDo add text to response
                 print (user1)
