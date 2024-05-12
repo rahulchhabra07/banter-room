@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+openai = "*"
+openai-whisper = "*"
+setuptools-rust = "*"
+pyaudio = "*"
+python-dotenv = "*"
+elevenlabslib = "*"
+replicate = "*"
+opencv-python = "*"
+ffpyplayer = "*"
+groq = "*"
+elevenlabs = "==1.2.1"
+soundfile = "==0.12.1"
+moviepy = "==1.0.3"
+faster-whisper = "==1.0.2"
+octoai = "==1.0.2"
+audio-recorder-streamlit = "==0.0.9"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

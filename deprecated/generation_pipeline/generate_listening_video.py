@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+import soundfile as sf
 
 
 load_dotenv()
