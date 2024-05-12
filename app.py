@@ -16,6 +16,23 @@ st.set_page_config(layout="wide")
 st.title("Quintelligence!")
 octoai_client = OctoAI()
 
+
+# audio_file = '/Users/shubhankar/Downloads/voice.mp3'
+#
+# with open(audio_file, "rb") as f:
+#     audio_data = f.read()
+#     b64 = base64.b64encode(audio_data).decode("utf-8")
+#
+# # HTML to embed the audio file using base64
+# audio_html = f"""
+# <audio controls autoplay>
+#     <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+#     Your browser does not support the audio element.
+# </audio>
+# """
+# Display the audio player
+# st.markdown(audio_html, unsafe_allow_html=True)
+
 # whisper_model = WhisperModel("base", device="cpu", compute_type="int8", cpu_threads=int(os.cpu_count() / 2))
 
 def speech_to_text(audio_chunk):
@@ -33,7 +50,7 @@ def base64_to_html_audio(base64_string):
     # Convert base64 to HTML video tag source
     return f"""
     <audio autoplay>
-    <source src="data:audio/wav;base64,{base64_string}" type="audio/wav">
+    <source src="data:audio/mp3;base64,{base64_string}" type="audio/mp3">
     </audio>"""
 
 def create_image(character_name):
@@ -163,42 +180,14 @@ with footer_container:
                 print (response.name)
                 print (response.audio_bytes)
 
-                audio_html = base64_to_html_audio(response.audio_bytes)
-                print (audio_html)
-                st.markdown(audio_html, unsafe_allow_html=True)
+                b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
+                md = f"""
+                <audio controls autoplay>
+                <source src="data:audio/wav;base64,{b64}" type="audio/wav">
+                </audio>
+                """
+                st.markdown(md, unsafe_allow_html=True)
 
-                # FOR VIDEO OUTPUT
-                # if response.name == user1:
-                #     print ("user 1 matched")
-                #     # st.session_state.user1_video_state = 'video'
-                #     # st.session_state.user1_video_data = response.video_bytes
-                #     # print (st.session_state.user1_video_state)
-                #     # audio_bytes = None
-                #     # st.rerun()
-                #
-                #     with open(f"./intermediate/{user1.lower().replace(" ", "_")}.wav", "rb") as f:
-                #         data = f.read()
-                #     b64 = base64.b64encode(data).decode("utf-8")
-                #     audio_html = base64_to_html_audio(b64)
-                #     print (audio_html)
-                #     st.markdown(audio_html, unsafe_allow_html=True)
-                #
-                #
-                # elif response.name == user2:
-                #     # st.session_state.user2_video_state = 'video'
-                #     # st.session_state.user2_video_data = response.video_bytes
-                #     # audio_bytes = None
-                #     # st.rerun()
-                #
-                #     with open(f"./intermediate/{user2.lower().replace(" ", "_")}.wav", "rb") as f:
-                #         data = f.read()
-                #     b64 = base64.b64encode(data).decode("utf-8")
-                #     audio_html = base64_to_html_audio(b64)
-                #     print (audio_html)
-                #     st.markdown(audio_html, unsafe_allow_html=True)
-                # 
-                # else:
-                #     pass
 
 camera = cv2.VideoCapture(0)
 
@@ -207,11 +196,5 @@ while True:
     if not ret:
         break
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    # if user1 and FRAME_WINDOW1:
-    #     FRAME_WINDOW1.image(f"./assets/{user1.lower().replace(" ", "_")}.jpeg", width=640)
-    #
-    # if user2 and FRAME_WINDOW2:
-    #     FRAME_WINDOW2.image(f"./assets/{user2.lower().replace(" ", "_")}.jpeg", width=640)
-    #     FRAME_WINDOW2.image(frame)
 
     FRAME_WINDOW3.image(frame)
