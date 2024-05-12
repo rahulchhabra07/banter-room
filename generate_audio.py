@@ -3,9 +3,12 @@ from elevenlabs import save, stream
 from elevenlabs.client import ElevenLabs
 from schemas import CharacterResponse, characters, get_character_by_name
 from dotenv import load_dotenv
+import os
 load_dotenv()
 
-client = ElevenLabs()
+client = ElevenLabs(
+    api_key=os.getenv("ELEVENLABS_API_KEY")
+)
 
 def generate_audio(character_response: CharacterResponse):
     character = get_character_by_name(character_response.name)

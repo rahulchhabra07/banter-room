@@ -9,7 +9,7 @@ from schemas import CharacterResponse
 def generate_character_response(input: str) -> CharacterResponse:
     # Get the character name and text response from LLM
     character_response = generate_text_response(input)
-    
+
     # Generate audio from the text response
     generate_audio(character_response)
 
@@ -19,6 +19,6 @@ def generate_character_response(input: str) -> CharacterResponse:
     return character_response_with_video
 
 
-response = generate_character_response("What does knowledge mean to you?")
+response = generate_character_response("What has movies taught you?")
 print(response.name)
 print(response.text)
