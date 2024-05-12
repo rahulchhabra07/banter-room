@@ -1,5 +1,5 @@
-from generation_pipeline.generate_text_response import generate_text_response
-from generation_pipeline.generate_audio import generate_audio
+from clean.generate_text_response import generate_text_response
+from clean.generate_audio import generate_audio
 from generation_pipeline.generate_video import generate_video
 from generation_pipeline.take_in_audio import take_in_audio
 from generation_pipeline.transcription import transcription

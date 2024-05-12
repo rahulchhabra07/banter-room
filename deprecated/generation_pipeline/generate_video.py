@@ -1,9 +1,6 @@
 import replicate
 import os
-from dotenv import load_dotenv
 
-
-load_dotenv()
 replicate_client = replicate.Client(os.getenv("REPLICATE_API_KEY"))
 
 def generate_video(outfile = "output.wav"):
