@@ -3,10 +3,15 @@ from generate_audio import generate_audio
 from generate_text_response import generate_text_response
 from generate_video import generate_video
 from pydantic import BaseModel
-from schemas import CharacterResponse
+from schemas import CharacterResponse, Message
+from typing import List
 
 
-def generate_character_response(input: str) -> CharacterResponse:
+def generate_character_response(messages: List[Message]) -> CharacterResponse:
+    # check if the last message is a user message 
+    message = messages[-1]
+    if message.role != "user":
+        return None
     # Get the character name and text response from LLM
     character_response = generate_text_response(input)
     

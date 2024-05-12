@@ -39,3 +39,8 @@ class CharacterResponse(BaseModel):
     text: str
     audio_bytes: Optional[bytes] = None
     video_bytes: Optional[bytes] = None
+
+
+class Message(BaseModel):
+    role: str
+    content: str
