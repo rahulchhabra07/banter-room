@@ -34,6 +34,8 @@ octoai_client = OctoAI()
 # Display the audio player
 # st.markdown(audio_html, unsafe_allow_html=True)
 
+message_history = []
+
 whisper_model = WhisperModel("base", device="cpu", compute_type="int8", cpu_threads=int(os.cpu_count() / 2))
 
 def speech_to_text(audio_chunk):
@@ -176,11 +178,13 @@ with footer_container:
             transcript = speech_to_text(webm_file_path)
             # print time difference from current time
             print(f"Time taken for transcription: {time.time() - current_time}")
-            message = [Message(role="user",content=transcript)] ## remove this - currently hardcoded for testing
+            message_history.append(Message(role="user", content=transcript))
             # message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
-            if message:
+            if message_history:
                 os.remove(webm_file_path)
-                response = generate_character_response(message)
+                response = generate_character_response(message_history)
+                message = Message(role="assistant", content=response.name + ": " + response.text)
+                message_history.append(message)
                 print("response from character")
                 print(response.text)
                 #ToDo add text to response
