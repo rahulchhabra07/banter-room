@@ -30,6 +30,11 @@ characters = [
         voice_id="xw3R11eT1QH0JbB43JqE",
         reference_video="assets/dwayne_johnson.mp4"
     ),
+    Character(
+        name= "Mark Zuckerberg",
+        voice_id="7m1WmesWs2JBGeZtTZjT",
+        reference_video="assets/mark_zuckerberg.mp4"
+    ),
 ]
 
 character_names = [character.name for character in characters]
