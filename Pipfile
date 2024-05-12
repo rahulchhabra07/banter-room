@@ -16,6 +16,7 @@ ffpyplayer = "*"
 groq = "*"
 elevenlabs = "==1.2.1"
 soundfile = "==0.12.1"
+moviepy = "==1.0.3"
 
 [dev-packages]
 
