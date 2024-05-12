@@ -11,6 +11,7 @@ from octoai.client import OctoAI
 from response import generate_character_response
 from schemas import Message
 import time
+
 st.set_page_config(layout="wide")
 
 st.title("Quintelligence!")
@@ -33,7 +34,7 @@ octoai_client = OctoAI()
 # Display the audio player
 # st.markdown(audio_html, unsafe_allow_html=True)
 
-# whisper_model = WhisperModel("base", device="cpu", compute_type="int8", cpu_threads=int(os.cpu_count() / 2))
+whisper_model = WhisperModel("base", device="cpu", compute_type="int8", cpu_threads=int(os.cpu_count() / 2))
 
 def speech_to_text(audio_chunk):
     segments, info = whisper_model.transcribe(audio_chunk, beam_size=5)
@@ -131,9 +132,9 @@ with top_row:
             FRAME_WINDOW2 = st.image("./assets/llama1.png", width=640)  # Default image
         else:
             if st.session_state.user1_video_state == 'image':
-                if not os.path.exists(f"./assets/{user1.lower().replace(" ", "_")}.jpeg"):
+                if not os.path.exists(f"""./assets/{user1.lower().replace(' ', '_')}.jpeg"""):
                     create_image(user1.lower().replace(" ", "_"))
-                FRAME_WINDOW2 = st.image(f"./assets/{user1.lower().replace(" ", "_")}.jpeg", width=640)
+                FRAME_WINDOW2 = st.image(f"./assets/{user1.lower().replace(' ', '_')}.jpeg", width=640)
             else:
                 video_html = base64_to_html_video(st.session_state.user1_video_data)
                 st.markdown(video_html, unsafe_allow_html=True)
@@ -146,9 +147,9 @@ with top_row:
             FRAME_WINDOW2 = st.image("./assets/llama2.png", width=640)  # Default image
         else:
             if st.session_state.user2_video_state == 'image':
-                if not os.path.exists(f"./assets/{user2.lower().replace(" ", "_")}.jpeg"):
-                    create_image(user2.lower().replace(" ", "_"))
-                FRAME_WINDOW2 = st.image(f"./assets/{user2.lower().replace(" ", "_")}.jpeg", width=640)
+                if not os.path.exists(f"./assets/{user2.lower().replace(' ', '_')}.jpeg"):
+                    create_image(user2.lower().replace(' ', '_'))
+                FRAME_WINDOW2 = st.image(f"./assets/{user2.lower().replace(' ', '_')}.jpeg", width=640)
             else:
                 video_html = base64_to_html_video(st.session_state.user2_video_data)
                 st.markdown(video_html, unsafe_allow_html=True)
@@ -171,8 +172,13 @@ with footer_container:
             webm_file_path = "audio.mp3"
             with open(webm_file_path, "wb") as f:
                 f.write(audio_bytes)
-            # transcript = speech_to_text(webm_file_path)
-            message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
+            # set current time
+            current_time = time.time()
+            transcript = speech_to_text(webm_file_path)
+            # print difference from current time
+            print (time.time() - current_time)
+            message = [Message(role="user",content=transcript)] ## remove this - currently hardcoded for testing
+            # message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
             if message:
                 os.remove(webm_file_path)
                 response = generate_character_response(message)

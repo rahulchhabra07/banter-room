@@ -17,6 +17,9 @@ groq = "*"
 elevenlabs = "==1.2.1"
 soundfile = "==0.12.1"
 moviepy = "==1.0.3"
+faster-whisper = "==1.0.2"
+octoai = "==1.0.2"
+audio-recorder-streamlit = "==0.0.9"
 
 [dev-packages]
 
