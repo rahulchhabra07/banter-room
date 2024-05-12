@@ -105,6 +105,7 @@ def create_image(character_name):
 # Using containers for each row
 top_row = st.container()
 bottom_row = st.container()
+footer_container = st.container()
 
 # Placeholder references to keep the camera feeds
 FRAME_WINDOW1 = None
@@ -124,7 +125,6 @@ if 'user2_video_state' not in st.session_state:
     st.session_state.user2_video_state = 'image'
 
 with top_row:
-    print ("hey hey, in top row")
     col1, col2 = st.columns(2)
     with col1:
         user1 = st.selectbox('Who do you wanna chat with?', ['', 'Dwayne Johnson', 'Elon Musk', 'Donald Trump', 'Mark Zuckerberg', 'Albert Einstein'], key='1a', on_change=lambda: setattr(st.session_state, 'user1', st.session_state['1a']))
@@ -162,10 +162,9 @@ with bottom_row:
         FRAME_WINDOW3 = st.image([])
         desc3 = st.text('You (Human)')
 
-footer_container = st.container()
+
 with footer_container:
     audio_bytes = audio_recorder()
-
     if audio_bytes:
         # Write the audio bytes to a file
         with st.spinner("Transcribing..."):
@@ -175,16 +174,16 @@ with footer_container:
             # set current time
             current_time = time.time()
             transcript = speech_to_text(webm_file_path)
-            # print difference from current time
-            print (time.time() - current_time)
+            # print time difference from current time
+            print(f"Time taken for transcription: {time.time() - current_time}")
             message = [Message(role="user",content=transcript)] ## remove this - currently hardcoded for testing
             # message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
             if message:
                 os.remove(webm_file_path)
                 response = generate_character_response(message)
+                print("response from character")
+                print(response.text)
                 #ToDo add text to response
-                print (response.name)
-                print (response.audio_bytes)
 
                 b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
                 md = f"""
@@ -192,7 +191,9 @@ with footer_container:
                 <source src="data:audio/wav;base64,{b64}" type="audio/wav">
                 </audio>
                 """
-                st.markdown(md, unsafe_allow_html=True)
+                x = st.markdown(md, unsafe_allow_html=True)
+                time.sleep(15)
+                x.empty()
 
 
 camera = cv2.VideoCapture(0)
