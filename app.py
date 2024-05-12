@@ -14,7 +14,7 @@ import time
 
 st.set_page_config(layout="wide")
 
-st.title("Quintelligence!")
+st.title("Banter Room")
 octoai_client = OctoAI()
 
 
@@ -169,35 +169,35 @@ with footer_container:
     audio_bytes = audio_recorder()
     if audio_bytes:
         # Write the audio bytes to a file
-        with st.spinner("Transcribing..."):
-            webm_file_path = "audio.mp3"
-            with open(webm_file_path, "wb") as f:
-                f.write(audio_bytes)
-            # set current time
-            current_time = time.time()
-            transcript = speech_to_text(webm_file_path)
-            # print time difference from current time
-            print(f"Time taken for transcription: {time.time() - current_time}")
-            message_history.append(Message(role="user", content=transcript))
-            # message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
-            if message_history:
-                os.remove(webm_file_path)
-                response = generate_character_response(message_history)
-                message = Message(role="assistant", content=response.name + ": " + response.text)
-                message_history.append(message)
-                print("response from character")
-                print(response.text)
-                #ToDo add text to response
+        webm_file_path = "audio.mp3"
+        with open(webm_file_path, "wb") as f:
+            f.write(audio_bytes)
+        # set current time
+        current_time = time.time()
+        transcript = speech_to_text(webm_file_path)
+        # print time difference from current time
+        print(f"Time taken for transcription: {time.time() - current_time}")
+        message_history.append(Message(role="user", content=transcript))
+        # message = [Message(role="user",content="What is your name man?")] ## remove this - currently hardcoded for testing
+        if message_history:
+            os.remove(webm_file_path)
+            response = generate_character_response(message_history)
+            message = Message(role="assistant", content=response.name + ": " + response.text)
+            message_history.append(message)
+            print("response from character")
+            print(response.text)
+            #ToDo add text to response
 
-                b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
-                md = f"""
-                <audio controls autoplay>
-                <source src="data:audio/wav;base64,{b64}" type="audio/wav">
-                </audio>
-                """
-                x = st.markdown(md, unsafe_allow_html=True)
-                time.sleep(15)
-                x.empty()
+            b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
+            md = f"""
+            <audio controls autoplay>
+            <source src="data:audio/wav;base64,{b64}" type="audio/wav">
+            </audio>
+            """
+            x = st.markdown(md, unsafe_allow_html=True)
+            time.sleep(10)
+            x.empty()
+            
 
 
 camera = cv2.VideoCapture(0)
