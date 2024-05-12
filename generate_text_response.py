@@ -1,7 +1,8 @@
 import os
 from groq import Groq
 from dotenv import load_dotenv
-from schemas import CharacterResponse, character_names
+from schemas import CharacterResponse, character_names, Message
+from typing import List
 
 load_dotenv()
 
@@ -27,22 +28,23 @@ Make sure JSON is always valid.
 Don't use any  special characters in the text like newline or backtick.
 Don't respond in more than 3 lines
 """
+<<<<<<< HEAD
+=======
+# print(prompt)
+
+>>>>>>> 4c889c8eb8733a932505b25c0f3a201ce4ccb337
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-def generate_text_response(input_text):
+system_message = Message(role="system", content=prompt)
+
+def generate_text_response(messages: List[Message]):
+        messages.insert(0, system_message)
+        messages_dicts = [msg.dict() for msg in messages]
+        print(messages_dicts)
         completion = client.chat.completions.create(
                 model="llama3-70b-8192",
-                messages=[
-                        {
-                                "role": "system",
-                                "content": prompt
-                        },
-                        {
-                                "role": "user",
-                                "content": input_text
-                        }
-                ],
+                messages=messages_dicts,
                 temperature=0.4,
                 max_tokens=1024,
                 top_p=1,
@@ -55,7 +57,16 @@ def generate_text_response(input_text):
         print(x)
         return CharacterResponse.model_validate_json(x)
 
+<<<<<<< HEAD
 
 # cr = generate_text_response("What does physics tell us about Life?")
 # print(cr.name)
 # print(cr.text)
+=======
+messages = [
+        Message(role="user", content="What does physics tell us about Life?")
+]
+cr = generate_text_response(messages)
+print(cr.name)
+print(cr.text)
+>>>>>>> 4c889c8eb8733a932505b25c0f3a201ce4ccb337

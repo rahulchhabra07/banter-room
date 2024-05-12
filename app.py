@@ -110,7 +110,7 @@ with top_row:
                     create_image(user1.lower().replace(" ", "_"))
                 FRAME_WINDOW2 = st.image(f"./assets/{user1.lower().replace(" ", "_")}.jpeg", width=640)
             else:
-                video_html = base64_to_html_video(st.session_state.user1_video_data, 'user1_video')
+                video_html = base64_to_html_video(st.session_state.user1_video_data)
                 print (video_html)
                 st.markdown(video_html, unsafe_allow_html=True)
                 print (st.session_state.user1_video_state)
@@ -127,7 +127,7 @@ with top_row:
                     create_image(user2.lower().replace(" ", "_"))
                 FRAME_WINDOW2 = st.image(f"./assets/{user2.lower().replace(" ", "_")}.jpeg", width=640)
             else:
-                video_html = base64_to_html_video(st.session_state.user2_video_data, 'user2_video')
+                video_html = base64_to_html_video(st.session_state.user2_video_data)
                 st.markdown(video_html, unsafe_allow_html=True)
                 st.session_state.user2_video_state = 'image'
 
@@ -161,10 +161,12 @@ with footer_container:
                     print ("user 1 matched")
                     st.session_state.user1_video_state = 'video'
                     st.session_state.user1_video_data = response.video_bytes
+                    print (st.session_state.user1_video_state)
+                    st.experimental_rerun()
                 elif response.name == user2:
                     st.session_state.user2_video_state = 'video'
                     st.session_state.user2_video_data = response.video_bytes
-
+                    st.experimental_rerun()
                 else:
                     pass
 
