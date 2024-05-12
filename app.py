@@ -1,4 +1,6 @@
+import datetime
 import os, io
+import httpx
 import requests
 import cv2
 import base64
@@ -11,6 +13,7 @@ from octoai.client import OctoAI
 from response import generate_character_response
 from schemas import Message
 import time
+
 
 st.set_page_config(layout="wide")
 
@@ -43,10 +46,7 @@ def speech_to_text(audio_chunk):
     speech_text = " ".join([segment.text for segment in segments])
     return speech_text
 
-def speech_to_text_deepgram(audio_chunk):
-    segments, info = whisper_model.transcribe(audio_chunk, beam_size=5)
-    speech_text = " ".join([segment.text for segment in segments])
-    return speech_text
+
 
 
 def base64_to_html_video(base64_string):
@@ -214,3 +214,5 @@ while True:
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     FRAME_WINDOW3.image(frame)
+
+

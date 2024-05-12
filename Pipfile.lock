@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "67114b1d282ae4c0a3a4012f76d563929c24fbe9b9cabd6981b1e1b5aebdab41"
+            "sha256": "7a2b002f763d9f6ba7c2f7e2f840d7b925b28cfc4948833409a16b470d5ae255"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -503,11 +503,11 @@
         },
         "deepgram-sdk": {
             "hashes": [
-                "sha256:8a5de419767fc24bde4b27916fb4b77b3553bfe818a11ca1a06cf9674310294d",
-                "sha256:a807c652794c77da637fd05a3fafb1efdb71a3689d7e616c7bf26ecdebb3bf63"
+                "sha256:349b514732f0d1ef01f2d824cef8cd28a8e62f862217178aecbe9eda1a8bcabe",
+                "sha256:fae2dc93b9efbcdd84b83e23be17bffd2640c1abb12e3436fc2b587182a7cb40"
             ],
             "index": "pypi",
-            "version": "==3.2.7"
+            "version": "==3.2.6"
         },
         "distro": {
             "hashes": [
