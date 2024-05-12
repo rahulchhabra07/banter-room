@@ -160,30 +160,43 @@ with footer_container:
                 os.remove(webm_file_path)
                 response = generate_character_response(message)
                 #ToDo add text to response
-
-                # with open("./intermediate/dwayne_johnson.wav", "rb") as f:
-                #     data = f.read()
-                # b64 = base64.b64encode(data).decode("utf-8")
                 print (response.name)
+                print (response.audio_bytes)
+
                 audio_html = base64_to_html_audio(response.audio_bytes)
-                # audio_html = base64_to_html_audio(b64)
                 print (audio_html)
                 st.markdown(audio_html, unsafe_allow_html=True)
 
-
-                ## FOR VIDEO OUTPUT
+                # FOR VIDEO OUTPUT
                 # if response.name == user1:
                 #     print ("user 1 matched")
-                #     st.session_state.user1_video_state = 'video'
-                #     st.session_state.user1_video_data = response.video_bytes
-                #     print (st.session_state.user1_video_state)
-                #     audio_bytes = None
-                #     st.rerun()
+                #     # st.session_state.user1_video_state = 'video'
+                #     # st.session_state.user1_video_data = response.video_bytes
+                #     # print (st.session_state.user1_video_state)
+                #     # audio_bytes = None
+                #     # st.rerun()
+                #
+                #     with open(f"./intermediate/{user1.lower().replace(" ", "_")}.wav", "rb") as f:
+                #         data = f.read()
+                #     b64 = base64.b64encode(data).decode("utf-8")
+                #     audio_html = base64_to_html_audio(b64)
+                #     print (audio_html)
+                #     st.markdown(audio_html, unsafe_allow_html=True)
+                #
+                #
                 # elif response.name == user2:
-                #     st.session_state.user2_video_state = 'video'
-                #     st.session_state.user2_video_data = response.video_bytes
-                #     audio_bytes = None
-                #     st.rerun()
+                #     # st.session_state.user2_video_state = 'video'
+                #     # st.session_state.user2_video_data = response.video_bytes
+                #     # audio_bytes = None
+                #     # st.rerun()
+                #
+                #     with open(f"./intermediate/{user2.lower().replace(" ", "_")}.wav", "rb") as f:
+                #         data = f.read()
+                #     b64 = base64.b64encode(data).decode("utf-8")
+                #     audio_html = base64_to_html_audio(b64)
+                #     print (audio_html)
+                #     st.markdown(audio_html, unsafe_allow_html=True)
+                # 
                 # else:
                 #     pass
 

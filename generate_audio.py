@@ -19,4 +19,6 @@ def generate_audio(character_response: CharacterResponse):
         )
     save(audio_stream, "intermediate/" + character.get_compact_name() + ".wav")
     character_response.audio_bytes = bytes(audio_stream)
+    print ("in generate_audio")
+    print (character_response.audio_bytes)
     return character_response
