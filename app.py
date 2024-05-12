@@ -43,6 +43,11 @@ def speech_to_text(audio_chunk):
     speech_text = " ".join([segment.text for segment in segments])
     return speech_text
 
+def speech_to_text_deepgram(audio_chunk):
+    segments, info = whisper_model.transcribe(audio_chunk, beam_size=5)
+    speech_text = " ".join([segment.text for segment in segments])
+    return speech_text
+
 
 def base64_to_html_video(base64_string):
     # Convert base64 to HTML video tag source
@@ -188,15 +193,15 @@ with footer_container:
             print(response.text)
             #ToDo add text to response
 
-            b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
-            md = f"""
-            <audio controls autoplay>
-            <source src="data:audio/wav;base64,{b64}" type="audio/wav">
-            </audio>
-            """
-            x = st.markdown(md, unsafe_allow_html=True)
-            time.sleep(10)
-            x.empty()
+            # b64 = base64.b64encode(response.audio_bytes).decode("utf-8")
+            # md = f"""
+            # <audio controls autoplay>
+            # <source src="data:audio/wav;base64,{b64}" type="audio/wav">
+            # </audio>
+            # """
+            # x = st.markdown(md, unsafe_allow_html=True)
+            # time.sleep(15)
+            # x.empty()
             
 
 

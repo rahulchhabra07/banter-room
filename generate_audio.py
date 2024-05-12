@@ -17,13 +17,15 @@ def generate_audio(character_response: CharacterResponse):
         voice=character.voice_id,
         stream=True
         )
-    bytearray_data = bytearray()
-    for chunk in audio_stream:
-        bytearray_data.extend(chunk)
-    bytes_object = bytes(bytearray_data)
-    # save(audio_stream, "intermediate/" + character.get_compact_name() + ".wav")
-    character_response.audio_bytes = bytes_object
+    stream(audio_stream)
     return character_response
+    # bytearray_data = bytearray()
+    # for chunk in audio_stream:
+    #     bytearray_data.extend(chunk)
+    # bytes_object = bytes(bytearray_data)
+    # # save(audio_stream, "intermediate/" + character.get_compact_name() + ".wav")
+    # character_response.audio_bytes = bytes_object
+    # return character_response
 
 
 # cr = generate_audio(CharacterResponse(name="Dwayne Johnson", text="I'm Dwayne the rock Johnson"))
