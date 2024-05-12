@@ -10,7 +10,7 @@ from octoai.util import to_file
 from octoai.client import OctoAI
 from response import generate_character_response
 from schemas import Message
-
+import time
 st.set_page_config(layout="wide")
 
 st.title("Quintelligence!")
@@ -28,6 +28,13 @@ def base64_to_html_video(base64_string):
     # Convert base64 to HTML video tag source
     video_url = f"data:video/mp4;base64,{base64_string}"
     return f'<video width="100%" controls autoplay loop><source src="{video_url}" type="video/mp4"></video>'
+
+def base64_to_html_audio(base64_string):
+    # Convert base64 to HTML video tag source
+    return f"""
+    <audio autoplay>
+    <source src="data:audio/wav;base64,{base64_string}" type="audio/wav">
+    </audio>"""
 
 def create_image(character_name):
 
@@ -99,7 +106,7 @@ if 'user2_video_state' not in st.session_state:
     st.session_state.user2_video_state = 'image'
 
 with top_row:
-    print ("hey hey")
+    print ("hey hey, in top row")
     col1, col2 = st.columns(2)
     with col1:
         user1 = st.selectbox('Who do you wanna chat with?', ['', 'Dwayne Johnson', 'Elon Musk', 'Donald Trump', 'Mark Zuckerberg', 'Albert Einstein'], key='1a', on_change=lambda: setattr(st.session_state, 'user1', st.session_state['1a']))
@@ -114,8 +121,8 @@ with top_row:
                 video_html = base64_to_html_video(st.session_state.user1_video_data)
                 st.markdown(video_html, unsafe_allow_html=True)
                 print (st.session_state.user1_video_state)
+                time.sleep(30)
                 st.session_state.user1_video_state = 'image'
-                print (st.session_state.user1_video_state)
     with col2:
         user2 = st.selectbox('Who do you wanna chat with?', ['', 'Dwayne Johnson', 'Elon Musk', 'Donald Trump', 'Mark Zuckerberg', 'Albert Einstein'], key='2a', on_change=lambda: setattr(st.session_state, 'user2', st.session_state['2a']))
         if user2 == '':
@@ -152,21 +159,33 @@ with footer_container:
             if message:
                 os.remove(webm_file_path)
                 response = generate_character_response(message)
-                print (response.name)
                 #ToDo add text to response
-                print (user1)
-                if response.name == user1:
-                    print ("user 1 matched")
-                    st.session_state.user1_video_state = 'video'
-                    st.session_state.user1_video_data = response.video_bytes
-                    print (st.session_state.user1_video_state)
-                    st.experimental_rerun()
-                elif response.name == user2:
-                    st.session_state.user2_video_state = 'video'
-                    st.session_state.user2_video_data = response.video_bytes
-                    st.experimental_rerun()
-                else:
-                    pass
+
+                # with open("./intermediate/dwayne_johnson.wav", "rb") as f:
+                #     data = f.read()
+                # b64 = base64.b64encode(data).decode("utf-8")
+                print (response.name)
+                audio_html = base64_to_html_audio(response.audio_bytes)
+                # audio_html = base64_to_html_audio(b64)
+                print (audio_html)
+                st.markdown(audio_html, unsafe_allow_html=True)
+
+
+                ## FOR VIDEO OUTPUT
+                # if response.name == user1:
+                #     print ("user 1 matched")
+                #     st.session_state.user1_video_state = 'video'
+                #     st.session_state.user1_video_data = response.video_bytes
+                #     print (st.session_state.user1_video_state)
+                #     audio_bytes = None
+                #     st.rerun()
+                # elif response.name == user2:
+                #     st.session_state.user2_video_state = 'video'
+                #     st.session_state.user2_video_data = response.video_bytes
+                #     audio_bytes = None
+                #     st.rerun()
+                # else:
+                #     pass
 
 camera = cv2.VideoCapture(0)
 
