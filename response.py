@@ -19,6 +19,6 @@ def generate_character_response(input: str) -> CharacterResponse:
     return character_response_with_video
 
 
-response = generate_character_response("What does knowledge mean to you?")
+response = generate_character_response("What has movies taught you?")
 print(response.name)
 print(response.text)
