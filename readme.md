@@ -10,4 +10,4 @@
 - Streamlit for UI
 
 
-Made with love, coffee and Red bull for the Meta AI Llama 3 hackathon at Cerebral Valley, San Franciso (11-12 May)
+Made with love, coffee and Red bull for the Meta AI Llama 3 hackathon at Cerebral Valley, San Francisco (11-12 May)
